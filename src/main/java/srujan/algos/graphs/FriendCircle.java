@@ -1,4 +1,4 @@
-package srujan.alogs.graphs;
+package srujan.algos.graphs;
 
 import java.util.ArrayList;
 import java.util.HashSet;

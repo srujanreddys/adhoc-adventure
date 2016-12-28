@@ -2,7 +2,7 @@ package srujan.algos.strings;
 
 import org.junit.Test;
 
-import srujan.alogs.strings.GenericStringAlgos;
+import srujan.algos.strings.GenericStringAlgos;
 
 import org.junit.Assert;
 

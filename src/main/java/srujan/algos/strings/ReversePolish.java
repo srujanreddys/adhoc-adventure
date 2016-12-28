@@ -1,4 +1,4 @@
-package srujan.alogs.strings;
+package srujan.algos.strings;
 
 import java.util.Stack;
 
@@ -38,7 +38,9 @@ public int evalRPN(String[] tokens) {
 	public static void main(String args[])
 	{
 		String[] str = {"4", "13", "5", "/", "+"};
-		System.out.println(new ReversePolish().evalRPN(str));
+		//System.out.println(new ReversePolish().evalRPN(str));
+		String st ="hello test*/";
+		System.out.println(st.endsWith("*/"));
 	}
 	
 

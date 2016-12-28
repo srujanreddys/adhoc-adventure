@@ -1,4 +1,4 @@
-package srujan.alogs.strings;
+package srujan.algos.strings;
 
 import java.util.HashSet;
 
