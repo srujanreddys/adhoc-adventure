@@ -58,6 +58,10 @@ public class GenericStringAlgos {
 	            {
 	                localLen=1+ getMaxChainToWord(subString,wordLibrary);
 	            }
+	       
+            if(wordMax<localLen)
+            	wordMax=localLen;
+               
 	               
 	        }
 	     return wordMax +1;

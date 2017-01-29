@@ -1,7 +1,11 @@
 package srujan.algos.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+
+
 
 public class SerialDeSerial {
 	
@@ -67,6 +71,23 @@ public class SerialDeSerial {
 	    
 	        return root;
 	    }
+	    
+	    
+	    public List<Integer> preorderTraversal(TreeNode root) {
+	            
+	            List<Integer> list = new ArrayList<Integer>();
+	            if(root==null)
+	                return list;
+	            else
+	            {
+	                list.add(root.val);
+	            	list.addAll(preorderTraversal(root.left));
+	            	list.addAll(preorderTraversal(root.right));
+	            	
+	            }
+	            return list;
+	            
+	        }
 	
 	    public static void main(String args[])
 		{
@@ -84,6 +105,8 @@ public class SerialDeSerial {
 			 String str =s.serialize(null);
              System.out.println(str);
              System.out.println(s.serialize(s.deserialize(str)));
+             List<Integer> list = new ArrayList<Integer>();
+             System.out.println(s.preorderTraversal(three));
 		}
 
 }
