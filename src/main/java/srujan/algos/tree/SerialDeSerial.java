@@ -40,9 +40,11 @@ public class SerialDeSerial {
 	    }
 
 	    //Decodes your encoded data to tree.
-	    public TreeNode deserialize(String data) {
+	    public TreeNode deserialize(String data,String del) {
 	    	Queue<TreeNode> q = new LinkedList<TreeNode>();
-	    	String[]  str = data.split(" ");
+	    	String[]  str = data.split(del);
+	    	for(int i= 0;i<str.length;i++)
+	    	System.out.print(str[i]+" ");
 	    	if(data==null || str[0].equals("#"))
 	    		return null;
 	    	TreeNode root =new TreeNode(Integer.parseInt(str[0]));
@@ -89,6 +91,19 @@ public class SerialDeSerial {
 	            
 	        }
 	
+	    
+	    public List<Integer> recRightSideView(TreeNode root,int toGoDepth) {
+	        List<Integer> list = new ArrayList<Integer>();
+	        if(root==null)
+	           return list;
+	        if(toGoDepth <=0)
+	            list.add(root.val);
+	        List<Integer> rightList =recRightSideView(root.right,toGoDepth-1);
+	        list.addAll(rightList);
+	        list.addAll(recRightSideView(root.left,Math.max(rightList.size(),toGoDepth-1)));
+	        return list;
+	        
+	    }
 	    public static void main(String args[])
 		{
 			TreeNode root_left = new TreeNode(9);
@@ -101,10 +116,19 @@ public class SerialDeSerial {
 			root.right=root_right;
 			root_left.left=one;
 			one.left=two;
+			String testS= "-64,12,18,-4,-53,#,76,#,-51,#,#,-93,3,#,-31,47,#,3,53,-81,33,4,#,-51,-44,-60,11,#,#"
+					+ ",#,#,78,#,-35,-64,26,-81,-31,27,60,74,#,#,8,-38,47,12,-24,#,-59,-49,-11,-51,67,#,#,#,#,#,"
+					+ "#,#,-67,#,-37,-19,10,-55,72,#,#,#,-70,17,-4,#,#,#,#,#,#,#,3,80,44,-88,-91,#,48,-90,-30,#,#"
+					+ ",90,-34,37,#,#,73,-38,-31,-85,-31,-96,#,#,-18,67,34,72,#,-17,-77,#,56,-65,-88,-53,#,#,#,-33,"
+					+ "86,#,81,-42,#,#,98,-40,70,-26,24,#,#,#,#,92,72,-27,#,#,#,#,#,#,-67,#,#,#,#,#,#,#,-54,-66,-36,"
+					+ "#,-72,#,#,43"
+					+ ",#,#,#,-92,-1,-98,#,#,#,#,#,#,#,39,-84,#,#,#,#,#,#,#,#,#,#,#,#,#,-93,#,#,#,98";
 			SerialDeSerial s = new SerialDeSerial();
+			TreeNode node =s.deserialize(testS, ",");
+			 System.out.println(s.recRightSideView(node,0));
 			 String str =s.serialize(null);
              System.out.println(str);
-             System.out.println(s.serialize(s.deserialize(str)));
+             System.out.println(s.serialize(s.deserialize(str," ")));
              List<Integer> list = new ArrayList<Integer>();
              System.out.println(s.preorderTraversal(three));
 		}

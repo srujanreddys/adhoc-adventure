@@ -9,6 +9,7 @@ public class GenericStringAlgos {
 		 String[] str = {"a","b","ba","bca","bda","bdca"};
 		 longestChain(str);
 		 GenericStringAlgos g = new GenericStringAlgos();
+		 System.out.println(g.compareVersion("1.1.2", "1.1"));
 		}
 
 
@@ -67,6 +68,29 @@ public class GenericStringAlgos {
 	     return wordMax +1;
 	      
 	 }
+	 
+	  public int compareVersion(String version1, String version2) {
+	        
+	        String[] v1 = version1.split("\\.");
+	        String[] v2 = version2.split("\\.");
+	        int maxLen = v1.length<v2.length ?v2.length:v1.length;
+	        int i=0;
+	        System.out.println(maxLen);
+		     while(i<maxLen)
+		     {
+		    	 System.out.println(i);
+		    	 float v1f =v1.length>i ?Float.parseFloat(v1[i]):0;
+		    	 float v2f =v2.length>i ?Float.parseFloat(v2[i]):0;
+		    	 if(v1f==v2f)
+		    		 i++;
+		    	 else
+		    		 return v1f > v2f ?  1 :-1;
+		         
+		     }
+		     return 0;
+	      
+		  // return Float.parseFloat(version1) > Float.parseFloat(version2) ?  1 :-1;
+	    }
 	 
 	
 }

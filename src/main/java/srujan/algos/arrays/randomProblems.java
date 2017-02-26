@@ -46,6 +46,26 @@ public String recConvertToTitle(int n) {
 	 return  n==0 ? "" :recConvertToTitle((n-1)/26) +c.toString();
 	}
 
+public int numDecodings(String s) {
+	
+	
+	 int n = s.length();
+     if (n == 0) return 0;
+     
+     int[] memo = new int[n+1];
+     memo[0]  = 1;
+     memo[1] = s.charAt(0) != '0' ? 1 : 0;
+     
+     for (int i = 1; i <= n+1; i++)
+         if (s.charAt(i-1) == '0') continue;
+         else memo[i-1] = (Integer.parseInt(s.substring(i-1,i+1))<=26) ? memo[i-1]+memo[i-2] : memo[i-1];
+     
+     return memo[n];
+ 
+    
+    
+}
+
     
 
 
@@ -53,9 +73,9 @@ public static void main(String[] args)
 {
 	int[]nums1={1,2,3,4,5,6,7,8};
 	randomProblems r = new randomProblems();
-	
-	r.convertToTitle(26*26*26 +26*26 +26);
-	System.out.println(r.recConvertToTitle(26));
+	System.out.println(r.numDecodings("100"));
+	//r.convertToTitle(26*26*26 +26*26 +26);
+	//System.out.println(r.recConvertToTitle(26));
 	//return n == 0 ? "" : recConvertToTitle((n - 1) / 26) + (char) ((n - 1) % 26 + 'A');
 	
 }
