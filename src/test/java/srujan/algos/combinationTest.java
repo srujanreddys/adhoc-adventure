@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import org.junit.Assert; 
+import org.junit.Assert;
+
+import srujan.algos.arrays.HistGramArea;
 import  srujan.algos.permutations.combinations;;
 
 public class combinationTest {
@@ -24,6 +26,16 @@ public class combinationTest {
 			//System.out.println(combinations.subs(new int [] {1,2,2,3}).toString());
 			//Assert.assertSame("blue is sky the","blue is sky the");
 		}
+	@Test
+	public void solutions()
+	{
+	
+	int[] A = {2,1,3,1};
+	HistGramArea sol = new HistGramArea();
+	System.out.println(sol.largestRectangleArea(A));
+
+	
+	}
 	
         
     

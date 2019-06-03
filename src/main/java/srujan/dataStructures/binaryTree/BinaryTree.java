@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
+
 
 
 
@@ -105,9 +105,7 @@ public boolean checkBST(TreeNode root, Long min,Long max)
         return false;
     return checkBST(root.left,min,(long) root.val) && checkBST(root.right,(long) root.val,max);
 }
-private int[] first = new int[2];
-private int[] second = new int[2];
-private int[] cur = new int[2];
+
 public void findMode(TreeNode root) {
     
 	 //if(root==null) return null;

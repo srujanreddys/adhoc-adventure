@@ -16,7 +16,7 @@ public class HelloWorld {
         String s= "A man, a plan, a canal: Panama";
         int[] A = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
         int[] B = {1,2,3};
-        Solution sol = new Solution();
+        
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
