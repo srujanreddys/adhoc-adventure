@@ -7,7 +7,9 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 
-import srujan.algos.arrays.HistGramArea;
+
+import srujan.algos.arrays.HistoGramMaxArea;
+import srujan.dataStructures.binaryTree.*;
 import  srujan.algos.permutations.combinations;;
 
 public class combinationTest {
@@ -17,8 +19,10 @@ public class combinationTest {
 		public void testReverseWords()
 		{
 		String s = "leetcode";
+		int[] taskCounter = new int[26];
 		int[][] A = {{5,2},{3,4}};
 		Arrays.sort(A, (a,b)->a[0] -b[0]);
+		Arrays.sort(taskCounter, (a,b)-> b-a);
 
 		for(int[] t : A)
 			System.out.println(Arrays.toString(t));
@@ -31,11 +35,24 @@ public class combinationTest {
 	{
 	
 	int[] A = {2,1,3,1};
-	HistGramArea sol = new HistGramArea();
+	HistoGramMaxArea sol = new HistoGramMaxArea();
 	System.out.println(sol.largestRectangleArea(A));
+	}
+	
+	@Test
+	public void BinaryTree()
+	{
+	
+	String s  = "7,4,3,5,6,12,10,11,13,14";
+	BinaryTree sol = new BinaryTree();
+	BSTIterator bt = new BSTIterator(sol.bstFromPreOrder(s));
+	while(bt.hasNext())
+		System.out.println(bt.next());
 
 	
 	}
+	
+	
 	
         
     
