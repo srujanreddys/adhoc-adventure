@@ -112,6 +112,7 @@ public void printList(ListNode root)
 	while(root!=null)
 	{
 		System.out.println(root.val +"->");
+		root = root.next;
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -138,12 +139,4 @@ public static void main(String[] args)
 
 
  
-  class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) {
-          val = x;
-          next = null;
-      }
-  }
  

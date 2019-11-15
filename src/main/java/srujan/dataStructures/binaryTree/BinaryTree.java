@@ -1,10 +1,13 @@
 package srujan.dataStructures.binaryTree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.Stack;
+
 
 
 
@@ -19,16 +22,44 @@ public class BinaryTree {
 		while(!stack.isEmpty())
 		{
 			TreeNode node =stack.pop();
+			System.out.println(node.val);
 			if(node.left!=null){
-				stack.push(root.left);
+				stack.push(node.left);
 				continue;
 			}
-			System.out.println(node);
+			
 			if(node.right!=null){
-				stack.push(root.right);
+				stack.push(node.right);
 				continue;
 			}
 		}
+	}
+	
+	public TreeNode bstFromPreOrder(String str) {
+		String[] s = str.split(",");
+		Stack<TreeNode> stack  = new Stack<>();
+		int curPos = 1;
+		TreeNode root = new TreeNode(Integer.parseInt(s[0]));
+		stack.push(root);
+		while(!stack.isEmpty() && curPos < s.length) {
+			TreeNode node = stack.pop();
+			int value = Integer.parseInt(s[curPos]);
+			if(node.val > value)
+			{
+				node.left = new TreeNode(value);
+				stack.push(node);
+				stack.push(node.left);
+			}
+			else {
+				while(!stack.isEmpty() && stack.peek().val < value) {
+					node = stack.pop();
+				}
+				node.right = new TreeNode(value);
+				stack.push(node.right);
+			}
+			curPos++;
+		}
+		return root;
 	}
 public List<Integer> inorderTraversal(TreeNode root) {
         
@@ -56,6 +87,24 @@ public List<Integer> inorderTraversal(TreeNode root) {
 	}
 		return list;    
     }
+public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+    if(root==null)
+        return null;
+    if(root.val > p.val){
+        TreeNode left  = inorderSuccessor(root.left,p);            
+        return (left == null)? root : left;
+        
+        
+       
+        
+    }
+    else {
+        TreeNode right = inorderSuccessor(root.right,p);
+        return (right == null) ?null : right;
+        
+    }
+
+}
 	
 public boolean isValidBST(TreeNode root) {
 	System.out.println(Integer.MIN_VALUE +" "+Integer.MAX_VALUE);
@@ -105,9 +154,7 @@ public boolean checkBST(TreeNode root, Long min,Long max)
         return false;
     return checkBST(root.left,min,(long) root.val) && checkBST(root.right,(long) root.val,max);
 }
-private int[] first = new int[2];
-private int[] second = new int[2];
-private int[] cur = new int[2];
+
 public void findMode(TreeNode root) {
     
 	 //if(root==null) return null;
@@ -160,6 +207,8 @@ public TreeNode invertTree(TreeNode root) {
   }
     
 }
+ 
+
 	public static void main(String[] args)
 	{
 		int k=20;
@@ -197,38 +246,4 @@ public TreeNode invertTree(TreeNode root) {
       TreeNode(int x) { val = x; }
   }
  
-class BSTIterator {
 
-  
-    LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
-   public BSTIterator(TreeNode root) {
-	   while(root!=null){
-		     stack.push(root);
-		     root =root.left;
-	   }
-       
-   }
-
-   /** @return whether we have a next smallest number */
-   public boolean hasNext() {
-       return !stack.isEmpty();
-   }
-
-   /** @return the next smallest number */
-   public int next() {
-	   if(hasNext())
-	   {
-		   TreeNode node =stack.pop();
-		   int retVal= node.val;
-			node=node.right;
-			while(node!=null)
-			{
-				stack.push(node);
-				node =node.left;
-			}
-			return retVal;
-	   }
-	   else return -1;
-       
-   }
-}

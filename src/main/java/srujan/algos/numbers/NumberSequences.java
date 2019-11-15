@@ -1,5 +1,8 @@
 package srujan.algos.numbers;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class NumberSequences {
 	
 	/**
@@ -32,8 +35,48 @@ public class NumberSequences {
 	    }
 	  public static void main(String args[])
 		{
+		  int i = 1;
+		  int j = 4;
+		  String s = i +""+ j;
+		  System.out.println(s);	  
 		   System.out.println(new NumberSequences().countNumbersWithUniqueDigits(3));
 		}
-		
+	  public boolean traverse(char[][] board,Set<String> visited,String word,int curPos,int row,int col){
+	        // try finding the word
+	        if(curPos > word.length()-1)
+	            return true;
+	        if(row  >= board.length || row < 0 || col >= board[0].length || col < 0 || visited.contains(row +""+col) 
+	           ||word.charAt(curPos)  != board[row][col])
+	            return false;
+	        
+	        boolean status = false;
+	        visited.add(row +""+col);
+	        System.out.println(row +" "+col);//"ABCESEEEFS"
+	         if(traverse(board,visited,word,curPos+1,row+1,col) ||traverse(board,visited,word,curPos+1,row-1,col)
+	            ||traverse(board,visited,word,curPos+1,row,col+1) ||traverse(board,visited,word,curPos+1,row,col-1))
+	             return true;
+	         else 
+	             visited.remove(row +""+col);
+	        return false;
+	        
+	        
+	    }
+	    public boolean exist(char[][] board, String word) {
+	        if(board == null || word == null || word.length() ==0 )
+	            return false;
+	        Set<String>  visited = new HashSet<>();
+	        for(int i =0 ;i < board.length ;i++){
+	            for(int j =0 ;j < board[0].length ;j++){
+	                if(word.charAt(0) == board[i][j]){
+	                    visited.clear();
+	                    if(traverse(board,visited,word,0,i,j))
+	                        return true;
+	                }
+	                    
+	            }
+	        }
+	        return false;
+	       
+	    }
 
 }
