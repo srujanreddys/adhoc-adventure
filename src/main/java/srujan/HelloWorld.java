@@ -1,34 +1,18 @@
 package srujan;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
+
 import srujan.algos.*;
+import srujan.algos.tree.*;
 import srujan.dataStructures.lists.ListNode;
 
 public class HelloWorld {
  
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        String s= "A man, a plan, a canal: Panama";
-        int[] A = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-        int[] B = {1,2,3};
-        
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        node4.next = node2;node2.next = node1;node1.next=node3;
-        //sol.sortList(node4);
-       // sol.subsets(B);
-       // System.out.println(sol.recCombiner(1, 5, 2).toString());
-        //System.out.println(isPalindrome(s));
+     
        
     }
-    
+   
     public static boolean isPalindrome1(String s) {
         String newString = s.replaceAll("[^a-zA-Z0-9]","");
         int len = newString.length();
@@ -64,5 +48,20 @@ public class HelloWorld {
             adjListMap.put(i,new ArrayList<Integer>());
         
         
+        
     }
+    
 }
+
+//Definition for a Node.
+class Node {
+ public int val;
+ public List<Node> neighbors;
+
+ public Node() {}
+
+ public Node(int _val,List<Node> _neighbors) {
+     val = _val;
+     neighbors = _neighbors;
+ }
+};
